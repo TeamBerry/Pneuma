@@ -1,5 +1,5 @@
 # Stage 0, "build-stage"
-FROM node:9 as build-stage
+FROM node:16 as build-stage
 
 WORKDIR /Pneuma
 
