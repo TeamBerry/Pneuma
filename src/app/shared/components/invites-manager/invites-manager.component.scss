@@ -6,10 +6,12 @@
     background-color: var(--background-secondary-color);
     .invite-info {
         flex: 1;
+        max-width: 56%;
     }
     .invite-link {
         font-weight: 700;
         font-size: 1.2rem;
+        @include one-line-text();
     }
     .invite-expiry {
         color: var(--text-system-color);
