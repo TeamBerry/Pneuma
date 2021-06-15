@@ -186,7 +186,7 @@ export class BoxComponent implements OnInit {
 
     openBoxSettings() {
         const modalRef = this.modalService.open(BoxFormComponent, { size: 'xl' })
-        modalRef.componentInstance.title = `Edit Box Settings`
+        modalRef.componentInstance.title = `Manage Box - ${this.box.name}`
         modalRef.componentInstance.box = cloneDeep(this.box)
     }
 

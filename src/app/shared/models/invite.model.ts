@@ -1,3 +1,5 @@
+import { User } from './user.model';
+
 export interface Invite {
     link: string
     userToken: string
@@ -6,3 +8,7 @@ export interface Invite {
     createdAt: Date
     updatedAt: Date
 }
+
+export type PopulatedInvite = {
+    userToken: Partial<User>
+} & Invite

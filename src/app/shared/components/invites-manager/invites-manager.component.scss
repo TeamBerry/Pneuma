@@ -1,0 +1,17 @@
+@import './../../../../imports.scss';
+
+.invite-item {
+    font-family: 'Nunito';
+    border-radius: 10px;
+    background-color: var(--background-secondary-color);
+    .invite-info {
+        flex: 1;
+    }
+    .invite-link {
+        font-weight: 700;
+        font-size: 1.2rem;
+    }
+    .invite-expiry {
+        color: var(--text-system-color);
+    }
+}

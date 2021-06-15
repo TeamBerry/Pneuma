@@ -8,129 +8,151 @@
     <app-bx-tabset [options]="tabSetOptions" (clickedOption)="displayTab = $event"></app-bx-tabset>
     <div *ngIf="ready">
         <form (ngSubmit)="onSubmit()" #boxForm="ngForm">
-            <div class="details-space" [hidden]="displayTab!=='details'">
-                <section>
-                    <h4>Information</h4>
-                    <div class="form-group">
-                        <label class="col-form-label" for="name">Title <app-bx-required-input-indicator>
-                            </app-bx-required-input-indicator></label>
-                        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="box.name" required>
-                        <app-bx-alert
-                            [options]="{'type': 'danger', 'icon': false, 'message': 'The box name is required'}"
-                            *ngIf="boxForm.controls['name'].invalid && (boxForm.controls['name'].dirty || boxForm.controls['name'].touched)">
-                        </app-bx-alert>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-form-label" for="description">Description</label>
-                        <p class="help-text text-muted">Describe your box and its community! Will be shown if your
-                            box is featured.</p>
-                        <textarea class="form-control" name="description" id="description" cols="30" rows="5"
-                            [(ngModel)]="box.description"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-form-label" for="lang">Main spoken language</label>
-                        <p class="help-text text-muted">Can help users find a community. Don't worry, everyone will
-                            be able to join, regardless of the language.</p>
-                        <select name="lang" id="lang" class="form-control" [(ngModel)]="box.lang">
-                            <option *ngFor="let lang of langs" [value]="lang.key">{{ lang.value }}</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group d-flex no-gutters">
-                        <div class="col-10">
-                            <div class="d-flex align-items-center">
-                                <app-bx-chip [options]="{'type': 'lock'}" [display]="'icon'"></app-bx-chip>
-                                <label for="berries" class="col-form-label">Access Restriction</label>
+            <div [hidden]="displayTab!=='details'">
+                <div class="d-flex flex-column">
+                    <div class="details-space">
+                        <section>
+                            <h4>Information</h4>
+                            <div class="form-group">
+                                <label class="col-form-label" for="name">Title <app-bx-required-input-indicator>
+                                    </app-bx-required-input-indicator></label>
+                                <input type="text" class="form-control" id="name" name="name" [(ngModel)]="box.name"
+                                    required>
+                                <app-bx-alert
+                                    [options]="{'type': 'danger', 'icon': false, 'message': 'The box name is required'}"
+                                    *ngIf="boxForm.controls['name'].invalid && (boxForm.controls['name'].dirty || boxForm.controls['name'].touched)">
+                                </app-bx-alert>
                             </div>
-                            <p class="help-text text-muted">Your box will not appear in the home page. You will only
-                                be able to grant access by sharing its link directly. <strong>Private boxes cannot
-                                    be featured.</strong></p>
-                        </div>
-                        <div class="col d-flex align-items-center justify-content-end">
-                            <app-bx-checkbox [(value)]="box.private"></app-bx-checkbox>
-                        </div>
-                    </div>
-                </section>
-                <section>
-                    <h4>Settings</h4>
-                    <div class="form-group d-flex no-gutters">
-                        <div class="col-10">
-                            <div class="d-flex align-items-center">
-                                <app-bx-chip [options]="{'type': 'random'}" [display]="'icon'"></app-bx-chip>
-                                <label for="random" class="col-form-label">Pick at Random</label>
-                            </div>
-                            <p class="help-text text-muted">When a video ends, the next one will be picked at random
-                                from the upcoming pool of videos</p>
-                        </div>
-                        <div class="col d-flex align-items-center justify-content-end">
-                            <app-bx-checkbox [(value)]="box.options.random"></app-bx-checkbox>
-                        </div>
-                    </div>
 
-                    <div class="form-group d-flex no-gutters">
-                        <div class="col-10">
-                            <div class="d-flex align-items-center">
-                                <app-bx-chip [options]="{'type': 'loop'}" [display]="'icon'">
-                                </app-bx-chip>
-                                <label for="random" class="col-form-label">Loop Queue</label>
+                            <div class="form-group">
+                                <label class="col-form-label" for="description">Description</label>
+                                <p class="help-text text-muted">Describe your box and its community! Will be shown if
+                                    your
+                                    box is featured.</p>
+                                <textarea class="form-control" name="description" id="description" cols="30" rows="5"
+                                    [(ngModel)]="box.description"></textarea>
                             </div>
-                            <p class="help-text text-muted">The system will automatically requeue old videos. The
-                                queue display will change to no longer separate "upcoming" and "passed" videos.</p>
-                        </div>
-                        <div class="col d-flex align-items-center justify-content-end">
-                            <app-bx-checkbox [(value)]="box.options.loop"></app-bx-checkbox>
-                        </div>
-                    </div>
 
-                    <div class="form-group d-flex no-gutters">
-                        <div class="col-10">
-                            <div class="d-flex align-items-center">
-                                <app-bx-chip [options]="{'type': 'coin-enabled'}" [display]="'icon'"></app-bx-chip>
-                                <label for="berries" class="col-form-label">Berries System</label>
+                            <div class="form-group">
+                                <label class="col-form-label" for="lang">Main spoken language</label>
+                                <p class="help-text text-muted">Can help users find a community. Don't worry, everyone
+                                    will
+                                    be able to join, regardless of the language.</p>
+                                <select name="lang" id="lang" class="form-control" [(ngModel)]="box.lang">
+                                    <option *ngFor="let lang of langs" [value]="lang.key">{{ lang.value }}</option>
+                                </select>
                             </div>
-                            <p class="help-text text-muted">Your users will be able to collect Berries while they
-                                are in your box. They will then be able to spend the berries to skip a video or
-                                select the next video to play.
-                            </p>
-                        </div>
-                        <div class="col m-auto d-flex align-items-center justify-content-end">
-                            <app-bx-checkbox [(value)]="box.options.berries"></app-bx-checkbox>
-                        </div>
-                    </div>
 
-                    <div class="form-group d-flex no-gutters">
-                        <div class="col-8">
-                            <div class="d-flex align-items-center">
-                                <app-bx-chip [options]="{'type': 'duration-limit'}" [display]="'icon'">
-                                </app-bx-chip>
-                                <label for="durationRestriction" class="col-form-label">Video Duration
-                                    Restriction</label>
-                            </div>
-                            <p class="help-text text-muted">Videos that exceed the set limit will not be accepted
-                                into the queue. Specifying <strong>0</strong> will disable this restriction.
-                            </p>
-                        </div>
-                        <div class="col m-auto">
-                            <div class="input-group">
-                                <input type="number" class="form-control" id="durationRestriction"
-                                    name="durationRestriction" min="0" [(ngModel)]="box.options.videoMaxDurationLimit">
-                                <div class="input-group-append">
-                                    <span class="input-group-text">Minutes</span>
+                            <div class="form-group d-flex no-gutters">
+                                <div class="col-10">
+                                    <div class="d-flex align-items-center">
+                                        <app-bx-chip [options]="{'type': 'lock'}" [display]="'icon'"></app-bx-chip>
+                                        <label for="berries" class="col-form-label">Access Restriction</label>
+                                    </div>
+                                    <p class="help-text text-muted">Your box will not appear in the home page. You will
+                                        only
+                                        be able to grant access by sharing its link directly. <strong>Private boxes
+                                            cannot
+                                            be featured.</strong></p>
+                                </div>
+                                <div class="col d-flex align-items-center justify-content-end">
+                                    <app-bx-checkbox [(value)]="box.private"></app-bx-checkbox>
                                 </div>
                             </div>
-                        </div>
+                        </section>
+                        <section>
+                            <h4>Settings</h4>
+                            <div class="form-group d-flex no-gutters">
+                                <div class="col-10">
+                                    <div class="d-flex align-items-center">
+                                        <app-bx-chip [options]="{'type': 'random'}" [display]="'icon'"></app-bx-chip>
+                                        <label for="random" class="col-form-label">Pick at Random</label>
+                                    </div>
+                                    <p class="help-text text-muted">When a video ends, the next one will be picked at
+                                        random
+                                        from the upcoming pool of videos</p>
+                                </div>
+                                <div class="col d-flex align-items-center justify-content-end">
+                                    <app-bx-checkbox [(value)]="box.options.random"></app-bx-checkbox>
+                                </div>
+                            </div>
+
+                            <div class="form-group d-flex no-gutters">
+                                <div class="col-10">
+                                    <div class="d-flex align-items-center">
+                                        <app-bx-chip [options]="{'type': 'loop'}" [display]="'icon'">
+                                        </app-bx-chip>
+                                        <label for="random" class="col-form-label">Loop Queue</label>
+                                    </div>
+                                    <p class="help-text text-muted">The system will automatically requeue old videos.
+                                        The
+                                        queue display will change to no longer separate "upcoming" and "passed" videos.
+                                    </p>
+                                </div>
+                                <div class="col d-flex align-items-center justify-content-end">
+                                    <app-bx-checkbox [(value)]="box.options.loop"></app-bx-checkbox>
+                                </div>
+                            </div>
+
+                            <div class="form-group d-flex no-gutters">
+                                <div class="col-10">
+                                    <div class="d-flex align-items-center">
+                                        <app-bx-chip [options]="{'type': 'coin-enabled'}" [display]="'icon'">
+                                        </app-bx-chip>
+                                        <label for="berries" class="col-form-label">Berries System</label>
+                                    </div>
+                                    <p class="help-text text-muted">Your users will be able to collect Berries while
+                                        they
+                                        are in your box. They will then be able to spend the berries to skip a video or
+                                        select the next video to play.
+                                    </p>
+                                </div>
+                                <div class="col m-auto d-flex align-items-center justify-content-end">
+                                    <app-bx-checkbox [(value)]="box.options.berries"></app-bx-checkbox>
+                                </div>
+                            </div>
+
+                            <div class="form-group d-flex no-gutters">
+                                <div class="col-8">
+                                    <div class="d-flex align-items-center">
+                                        <app-bx-chip [options]="{'type': 'duration-limit'}" [display]="'icon'">
+                                        </app-bx-chip>
+                                        <label for="durationRestriction" class="col-form-label">Video Duration
+                                            Restriction</label>
+                                    </div>
+                                    <p class="help-text text-muted">Videos that exceed the set limit will not be
+                                        accepted
+                                        into the queue. Specifying <strong>0</strong> will disable this restriction.
+                                    </p>
+                                </div>
+                                <div class="col m-auto">
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="durationRestriction"
+                                            name="durationRestriction" min="0"
+                                            [(ngModel)]="box.options.videoMaxDurationLimit">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">Minutes</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
-                </section>
+                    <button type="submit" class="btn btn-default btn-block" [disabled]="!boxForm.valid">{{ context
+                        }}</button>
+                </div>
             </div>
-            <div *ngIf="displayTab === 'moderation'">
+            <div [hidden]="displayTab!=='moderation'">
                 <h4 style="display: flex; align-items: center;">Moderation</h4>
                 <p class="help-text text-muted text-center">The modifications you do here will only impact this box.
                     They will not modify your template. They will not modify your other boxes.</p>
                 <app-acl-form [(config)]="box.acl"></app-acl-form>
+                <button type="submit" class="btn btn-default btn-block" [disabled]="!boxForm.valid">{{ context
+                    }}</button>
             </div>
-            <button type="submit" class="btn btn-default btn-block" [disabled]="!boxForm.valid">{{ context }}</button>
         </form>
+        <div *ngIf="displayTab === 'invites'">
+            <app-invites-manager [boxToken]="box._id"></app-invites-manager>
+        </div>
     </div>
 </div>

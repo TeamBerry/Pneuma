@@ -260,8 +260,12 @@
 }
 
 .table {
+    font-family: 'Nunito';
     color: var(--text-main-color) !important;
     tr:hover {
         color: var(--text-main-color);
+    }
+    td, th {
+        vertical-align: middle;
     }
 }

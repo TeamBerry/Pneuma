@@ -21,9 +21,10 @@ export class BoxFormComponent implements OnInit {
 
     tabSetOptions = [
         { title: `Details`, value: 'details' },
-        { title: 'Moderation', value: 'moderation' }
+        { title: 'Moderation', value: 'moderation' },
+        { title: 'Invites', value: 'invites' }
     ]
-    displayTab: 'details' | 'moderation' = 'details';
+    displayTab: 'details' | 'moderation' | 'invites' = 'details';
 
     public session: AuthSubject = AuthService.getAuthSubject();
 

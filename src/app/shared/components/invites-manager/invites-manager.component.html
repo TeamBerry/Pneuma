@@ -1,0 +1,29 @@
+<div>
+    <div *ngIf="!isLoading; else loading" class="d-flex flex-column">
+        <div *ngFor="let invite of invites" class="d-flex p-3 my-1 invite-item">
+            <div class="d-flex flex-column invite-info">
+                <div class="d-flex flex-row">
+                    <p class=" mb-0 invite-link">{{ invite.link }}</p>
+                </div>
+                <div class="d-flex flex-row align-items-center">
+                    <app-profile-picture [filename]="invite.userToken.settings.picture" [size]="'xs'">
+                    </app-profile-picture>
+                    <span class="ml-2">{{ invite.userToken.name }}</span>
+                </div>
+            </div>
+            <div class="d-flex align-items-center invite-info">
+                <p class="mb-0">Expiry:
+                    <span class="invite-expiry">{{ invite.expiresAt | date:'dd/MM/yyyy HH:mm:ss'}}</span>
+                </p>
+            </div>
+            <div class="d-flex align-items-center px-2">
+                <app-bx-button (click)="revokeInvite(invite._id)"
+                    [options]="{'type': 'cancel', 'context': 'danger', 'textDisplay': 'tooltip', 'text': 'Revoke the invite'}">
+                </app-bx-button>
+            </div>
+        </div>
+    </div>
+    <ng-template #loading>
+        <app-loading-indicator></app-loading-indicator>
+    </ng-template>
+</div>
