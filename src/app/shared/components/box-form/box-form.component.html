@@ -151,8 +151,10 @@
                     }}</button>
             </div>
         </form>
-        <div *ngIf="displayTab === 'invites'">
-            <app-invites-manager [boxToken]="box._id"></app-invites-manager>
+        <div *ngIf="context === 'Edit'">
+            <div *ngIf="displayTab === 'invites'">
+                <app-invites-manager [boxToken]="box._id"></app-invites-manager>
+            </div>
         </div>
     </div>
 </div>

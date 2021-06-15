@@ -20,9 +20,8 @@ export class BoxFormComponent implements OnInit {
     @Input() box: Box;
 
     tabSetOptions = [
-        { title: `Details`, value: 'details' },
+        { title: `General`, value: 'details' },
         { title: 'Moderation', value: 'moderation' },
-        { title: 'Invites', value: 'invites' }
     ]
     displayTab: 'details' | 'moderation' | 'invites' = 'details';
 
@@ -174,6 +173,7 @@ export class BoxFormComponent implements OnInit {
                 }
             )
         } else {
+            this.tabSetOptions.push({ title: 'Invites', value: 'invites' });
             this.ready = true;
         }
     }
