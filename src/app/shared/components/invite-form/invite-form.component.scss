@@ -1,1 +1,10 @@
 @import './../../../../imports.scss';
+* {
+    font-family: 'Nunito';
+}
+
+.success-text {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+}

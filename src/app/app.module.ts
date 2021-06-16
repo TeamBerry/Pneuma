@@ -33,6 +33,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { ClipboardModule } from 'ngx-clipboard';
 import { BoxJoinComponent } from './shared/components/box-join/box-join.component';
+import { QrCodeModule } from 'ng-qrcode';
 
 @NgModule({
     declarations: [
@@ -63,6 +64,7 @@ import { BoxJoinComponent } from './shared/components/box-join/box-join.componen
         NgbModule,
         ColorPickerModule,
         ClipboardModule,
+        QrCodeModule
     ],
     exports: [
         AppComponent

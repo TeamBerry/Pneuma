@@ -22,12 +22,21 @@
         <button type="submit" class="btn btn-primary btn-block">Generate invite</button>
     </form>
     <div *ngIf="invite">
-        <div class="input-group">
-            <input type="text" class="form-control" id="name" name="name" [ngModel]="fullLink" #copyTarget>
-            <div class="input-group-append">
-                <button class="btn btn-outline-primary" type="button" [ngxClipboard]="copyTarget">Copy</button>
+        <p class="success-text">Your invite has been created!</p>
+        <div class="py-2">
+            <p class="mb-0">Copy this link:</p>
+            <div class="input-group">
+                <input type="text" class="form-control" id="name" name="name" [ngModel]="fullLink" #copyTarget>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="button" [ngxClipboard]="copyTarget">Copy</button>
+                </div>
             </div>
         </div>
-        <p class="help-text text-muted">You can now send this invite link to your friends.</p>
+        <div class="py-2">
+            <p class="mb-0">Or share this QR Code:</p>
+            <div class="d-flex align-items-center justify-content-center">
+                <qr-code [value]="fullLink" size="300"></qr-code>
+            </div>
+        </div>
     </div>
 </div>

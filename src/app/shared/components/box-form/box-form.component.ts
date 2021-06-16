@@ -16,7 +16,7 @@ import { UserService } from 'app/shared/services/user.service';
     providers: [BoxService]
 })
 export class BoxFormComponent implements OnInit {
-    @Input() title;
+    @Input() title: string;
     @Input() box: Box;
 
     tabSetOptions = [
