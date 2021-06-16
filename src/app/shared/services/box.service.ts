@@ -117,6 +117,10 @@ export class BoxService {
         return this.http.get<Array<PopulatedInvite>>(`${environment.araza}/boxes/${boxToken}/invites`)
     }
 
+    public revokeInvite(boxToken: string, id: string) {
+        return this.http.delete(`${environment.araza}/boxes/${boxToken}/invites/${id}`)
+    }
+
     /**
      * Lists the users currently connected to the box
      *

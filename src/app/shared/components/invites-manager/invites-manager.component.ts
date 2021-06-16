@@ -27,7 +27,12 @@ export class InvitesManagerComponent implements OnInit {
     }
 
     revokeInvite(id: string) {
-        console.log('INVITE TO REVOKE')
+        this.boxService.revokeInvite(this.boxToken, id).subscribe(
+            () => {
+                const targetIndex = this.invites.findIndex((invite) => invite._id === id)
+                this.invites.splice(targetIndex, 1);
+            }
+        )
     }
 
 }

@@ -1,6 +1,7 @@
 import { User } from './user.model';
 
 export interface Invite {
+    _id?: string
     link: string
     userToken: string
     boxToken: string
